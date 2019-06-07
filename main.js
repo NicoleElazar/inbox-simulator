@@ -98,10 +98,9 @@ function noMoreEmails() {
   if (boxes.length == 0) {
     lastMsg = document.createElement('div');
     mainContainer.appendChild(lastMsg);
-    text = document.createTextNode('There are no more messages in your Inbox!');
-    lastMsg.appendChild(text);
-    // lastMsg.innerHTML = 'There are no more messages in your Inbox!'
     lastMsg.classList.add('endComment');  
+    lastMsg.innerHTML = 'There are no more messages in your Inbox!';
+    deleteButton.removeEventListener('click', deleteMe);
   }
 }
 
