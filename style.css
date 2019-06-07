@@ -18,6 +18,7 @@ body {
 p {
   font-size: 14px;
   padding: 16px;
+  margin-bottom: 20px;
 }
 
 .inbox {
@@ -47,6 +48,7 @@ p {
   z-index: 1;
 }
 
+
 .words {
   padding-left: 20px;
   font-size: 18px;
@@ -67,7 +69,6 @@ input:checked + .one-email {
   background-color: rgb(230, 255, 253);
 }
 
-
 /* icon unchecked state... need psudo element for fa to work */
 .styled-checkbox:after {
   font-family: "Font Awesome 5 Free";
@@ -82,4 +83,47 @@ input:checked + .one-email > .styled-checkbox:after  {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: rgb(2, 233, 214);
+}
+
+
+/* buttons */
+.top-nav {
+  height: 60px;
+  font-size: 16px;
+  padding: 0 20px;
+}
+
+.select-all {
+  float: left;
+  color: white;
+  border: solid white 2px;
+  border-radius: 3px;
+  background: rgb(2, 233, 214);
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.delete {
+  float: right;
+  color: white;
+  border: solid white 2px;
+  border-radius: 3px;
+  background: rgb(196, 73, 73);
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.select-all:hover {
+  box-shadow: 0 1px 10px rgb(2, 233, 214);
+}
+
+.delete:hover {
+  box-shadow: 0 1px 10px rgb(196, 73, 73);
+}
+
+.endComment {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 100px;
 }

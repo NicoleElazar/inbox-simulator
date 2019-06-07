@@ -1,4 +1,10 @@
-let boxes = document.querySelectorAll('.box');
+
+//querySelectorAll creates a Node List not an array. Therefore copying it into a new array so I can use array methods on these variables. 
+let boxes = Array.from(document.querySelectorAll('.box'));
+let emailDivs = Array.from(document.querySelectorAll('.one-email'));
+const selectAll = document.querySelector('.select-all');
+const deleteButton = document.querySelector('.delete');
+let mainContainer = document.querySelector('.inbox');
 
 //empty variable to hold last checked box
 let lastChecked;
@@ -10,7 +16,7 @@ function handler(e) {
       if (lastChecked != undefined && this != lastChecked) {
         checkInbetween(this, lastChecked);
       }
-    }
+    } 
     lastChecked = this;
   }
   // clear the lastChecked variable if a box is unchecked, 
@@ -20,7 +26,7 @@ function handler(e) {
   } 
 }
 
-// To checkbox the boxes inbetween 2 clicks
+// To check the boxes inbetween 2 clicks
 function checkInbetween(box1, box2) {
   let checking = false;
 
@@ -34,9 +40,68 @@ function checkInbetween(box1, box2) {
   }
 }
 
-for (var box of boxes) {
+for (let box of boxes) {
     //set inital state for refresh  
     box.checked = false;
     //listener for each box in boxes array
     box.addEventListener('click', handler);
 }
+
+// SELECT ALL
+function checkEverything() {
+  // condition
+  let allChecked = true;
+
+  //inspect elements
+  for (let box of boxes) {
+    if (box.checked == false) {
+      //then condition is false
+      allChecked = false;
+    }
+  } 
+  // set elements based on condition
+  if (allChecked) {
+    for (let box of boxes) {
+      box.checked = false;
+    }
+  } else {
+      for (let box of boxes) {
+      box.checked = true;
+    }
+    // Can also write this if/else statement as:
+    // for (let box of boxes) {
+    //  box.checked != allChecked;
+    // }
+  }
+}
+selectAll.addEventListener('click', checkEverything);
+
+//DELETE BUTTON
+function deleteMe() {
+  //if any are checked, loop through them and remove the checked divs.
+  for (let i = (boxes.length - 1); i >= 0; i--) {
+    //if box checked is true
+    if (boxes[i].checked) {
+      boxes[i].remove();
+      boxes.splice(i, 1);
+      emailDivs[i].remove();
+      emailDivs.splice(i, 1);
+    }
+  }
+  noMoreEmails();
+}
+deleteButton.addEventListener('click', deleteMe);
+
+
+// CREATE MESSAGE WHEN ALL EMAILS ARE DELETED
+function noMoreEmails() {
+  if (boxes.length == 0) {
+    lastMsg = document.createElement('div');
+    mainContainer.appendChild(lastMsg);
+    text = document.createTextNode('There are no more messages in your Inbox!');
+    lastMsg.appendChild(text);
+    // lastMsg.innerHTML = 'There are no more messages in your Inbox!'
+    lastMsg.classList.add('endComment');  
+  }
+}
+
