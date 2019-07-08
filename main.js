@@ -1,10 +1,11 @@
 
-//querySelectorAll creates a Node List not an array. Therefore copying it into a new array so I can use array methods on these variables. 
+//querySelectorAll creates a Node List not an array. Therefore copying it into a new array so array methods can be used on it later. 
 let boxes = Array.from(document.querySelectorAll('.box'));
 let emailDivs = Array.from(document.querySelectorAll('.one-email'));
 const selectAll = document.querySelector('.select-all');
 const deleteButton = document.querySelector('.delete');
 let mainContainer = document.querySelector('.inbox');
+
 
 //empty variable to hold last checked box
 let lastChecked;
@@ -68,10 +69,6 @@ function checkEverything() {
       for (let box of boxes) {
       box.checked = true;
     }
-    // Can also write this if/else statement as:
-    // for (let box of boxes) {
-    //  box.checked != allChecked;
-    // }
   }
 }
 selectAll.addEventListener('click', checkEverything);
